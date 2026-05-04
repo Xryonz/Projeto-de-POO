@@ -1,0 +1,28 @@
+
+import java.util.List;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author aluno
+ */
+public class Equipe {
+    private String identificadorEquipe;
+    private List<Bombeiro> listaBombeiros;
+
+    public String getIdentificadorEquipe() {
+        return identificadorEquipe;
+    }
+
+    public void setIdentificadorEquipe(String identificadorEquipe) {
+        this.identificadorEquipe = identificadorEquipe;
+    }
+
+   
+    
+    
+}
