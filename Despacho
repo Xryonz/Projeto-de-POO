@@ -1,0 +1,61 @@
+
+import java.util.Date;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author aluno
+ */
+public class Despacho {
+    private String identificadorDespacho;
+    private Date dataDespacho;
+    private String horaDespacho;
+    private String status;
+    private int ocorrencia;
+
+    public String getIdentificadorDespacho() {
+        return identificadorDespacho;
+    }
+
+    public void setIdentificadorDespacho(String identificadorDespacho) {
+        this.identificadorDespacho = identificadorDespacho;
+    }
+
+    public Date getDataDespacho() {
+        return dataDespacho;
+    }
+
+    public void setDataDespacho(Date dataDespacho) {
+        this.dataDespacho = dataDespacho;
+    }
+
+    public String getHoraDespacho() {
+        return horaDespacho;
+    }
+
+    public void setHoraDespacho(String horaDespacho) {
+        this.horaDespacho = horaDespacho;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getOcorrencia() {
+        return ocorrencia;
+    }
+
+    public void setOcorrencia(int ocorrencia) {
+        this.ocorrencia = ocorrencia;
+    }
+    
+    
+}
