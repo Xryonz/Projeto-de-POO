@@ -17,12 +17,12 @@ public class Principal extends Application {
 
         TelaLogin telaLogin = new TelaLogin();
 
-        Scene cena = new Scene(telaLogin.criar(janela), 1440, 900);
-        cena.getStylesheets().add(getClass().getResource("/com/cad/despacho/estilo.css").toExternalForm());
+        Scene cena = new Scene(telaLogin.criar(janela), 1200, 750);
 
         janela.setScene(cena);
-        janela.setMinWidth(1100);
-        janela.setMinHeight(700);
+        janela.setMinWidth(1000);
+        janela.setMinHeight(650);
+        janela.centerOnScreen();
         janela.show();
     }
 }
