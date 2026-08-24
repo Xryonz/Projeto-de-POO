@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -48,44 +47,24 @@ public class TelaLogin {
         linha.getStyleClass().add("divisor");
         linha.setPrefWidth(340);
 
-        Label lblUsuario = new Label("REGISTRO GERAL / CPF");
-        lblUsuario.getStyleClass().add("field-label");
         TextField campoRgCpf = new TextField();
         campoRgCpf.getStyleClass().add("input-field");
         campoRgCpf.getStyleClass().add("mono");
         campoRgCpf.setPromptText("123.456.789-10");
-        VBox boxUsuario = new VBox(8);
-        boxUsuario.getChildren().add(lblUsuario);
-        boxUsuario.getChildren().add(campoRgCpf);
+        VBox boxUsuario = Campo.criar("REGISTRO GERAL / CPF", campoRgCpf, "field-label");
 
-        Label lblSenha = new Label("SENHA DE ACESSO TATICO");
-        lblSenha.getStyleClass().add("field-label");
         PasswordField campoSenha = new PasswordField();
         campoSenha.getStyleClass().add("input-field");
         campoSenha.getStyleClass().add("mono");
         campoSenha.setPromptText("****************");
-        VBox boxSenha = new VBox(8);
-        boxSenha.getChildren().add(lblSenha);
-        boxSenha.getChildren().add(campoSenha);
+        VBox boxSenha = Campo.criar("SENHA DE ACESSO TATICO", campoSenha, "field-label");
 
-        Label lblPerfil = new Label("PERFIL DE OPERACAO");
-        lblPerfil.getStyleClass().add("field-label");
         ToggleGroup grupoPerfil = new ToggleGroup();
-        ToggleButton btnDespachante = new ToggleButton("Despachante");
-        ToggleButton btnSupervisor = new ToggleButton("Supervisor");
-        btnDespachante.getStyleClass().add("role-toggle");
-        btnSupervisor.getStyleClass().add("role-toggle");
-        btnDespachante.setToggleGroup(grupoPerfil);
-        btnSupervisor.setToggleGroup(grupoPerfil);
+        ToggleButton btnDespachante = Botoes.criarToggle("Despachante", grupoPerfil, "role-toggle");
+        ToggleButton btnSupervisor = Botoes.criarToggle("Supervisor", grupoPerfil, "role-toggle");
         btnDespachante.setSelected(true);
-        btnDespachante.setMaxWidth(Double.MAX_VALUE);
-        btnSupervisor.setMaxWidth(Double.MAX_VALUE);
-        HBox.setHgrow(btnDespachante, Priority.ALWAYS);
-        HBox.setHgrow(btnSupervisor, Priority.ALWAYS);
         HBox boxRoles = new HBox(btnDespachante, btnSupervisor);
-        VBox boxPerfil = new VBox(8);
-        boxPerfil.getChildren().add(lblPerfil);
-        boxPerfil.getChildren().add(boxRoles);
+        VBox boxPerfil = Campo.criar("PERFIL DE OPERACAO", boxRoles, "field-label");
 
         VBox formulario = new VBox(20);
         formulario.getChildren().add(boxUsuario);
