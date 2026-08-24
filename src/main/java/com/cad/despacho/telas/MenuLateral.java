@@ -6,49 +6,34 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class MenuLateral {
 
-    TelaPrincipal pai;
-
-    Label itemNovaOcorrencia;
-    Label itemConsultar;
-    Label itemComunicacao;
-
     public VBox criar(TelaPrincipal pai) {
 
-        this.pai = pai;
-
         VBox raiz = new VBox(24);
-        raiz.getStyleClass().add("sidebar");
         raiz.setPadding(new Insets(20, 16, 20, 16));
         raiz.setPrefWidth(250);
         raiz.setMinWidth(250);
 
         VBox marca = new VBox(2);
         Label titulo = new Label("SISTEMA CAD");
-        titulo.getStyleClass().add("sidebar-title");
         Label subtitulo = new Label("CORPO DE BOMBEIROS");
-        subtitulo.getStyleClass().add("sidebar-subtitle");
         marca.getChildren().add(titulo);
         marca.getChildren().add(subtitulo);
 
         VBox listaNav = new VBox(6);
 
-        itemNovaOcorrencia = new Label("+  Nova Ocorrencia");
-        itemNovaOcorrencia.getStyleClass().add("nav-item");
+        Label itemNovaOcorrencia = new Label("+  Nova Ocorrencia");
         itemNovaOcorrencia.setMaxWidth(Double.MAX_VALUE);
         itemNovaOcorrencia.setOnMouseClicked(e -> pai.navegar(Tela.NOVA_OCORRENCIA));
 
-        itemConsultar = new Label("=  Consultar Ocorrencias");
-        itemConsultar.getStyleClass().add("nav-item");
+        Label itemConsultar = new Label("=  Consultar Ocorrencias");
         itemConsultar.setMaxWidth(Double.MAX_VALUE);
         itemConsultar.setOnMouseClicked(e -> pai.navegar(Tela.CONSULTAR));
 
-        itemComunicacao = new Label("))  Comunicacao");
-        itemComunicacao.getStyleClass().add("nav-item");
+        Label itemComunicacao = new Label("))  Comunicacao");
         itemComunicacao.setMaxWidth(Double.MAX_VALUE);
         itemComunicacao.setOnMouseClicked(e -> pai.navegar(Tela.COMUNICACAO));
 
@@ -59,46 +44,22 @@ public class MenuLateral {
         Region espaco = new Region();
         VBox.setVgrow(espaco, Priority.ALWAYS);
 
-        VBox boxOperador = new VBox();
-        boxOperador.getStyleClass().add("op-session");
         HBox linhaOperador = new HBox(10);
         linhaOperador.setAlignment(Pos.CENTER_LEFT);
-        StackPane avatar = new StackPane();
-        avatar.getStyleClass().add("op-avatar");
         Label avatarIniciais = new Label("RS");
-        avatarIniciais.getStyleClass().add("op-avatar-texto");
-        avatar.getChildren().add(avatarIniciais);
         VBox textoOperador = new VBox(0);
         Label nome = new Label("Sgt. Renato Silva");
-        nome.getStyleClass().add("op-name");
         Label matricula = new Label("OPERADOR #042");
-        matricula.getStyleClass().add("op-tag");
         textoOperador.getChildren().add(nome);
         textoOperador.getChildren().add(matricula);
-        linhaOperador.getChildren().add(avatar);
+        linhaOperador.getChildren().add(avatarIniciais);
         linhaOperador.getChildren().add(textoOperador);
-        boxOperador.getChildren().add(linhaOperador);
 
         raiz.getChildren().add(marca);
         raiz.getChildren().add(listaNav);
         raiz.getChildren().add(espaco);
-        raiz.getChildren().add(boxOperador);
+        raiz.getChildren().add(linhaOperador);
 
         return raiz;
-    }
-
-    public void marcarAtiva(Tela telaAtiva) {
-
-        itemNovaOcorrencia.getStyleClass().remove("nav-item-active");
-        itemConsultar.getStyleClass().remove("nav-item-active");
-        itemComunicacao.getStyleClass().remove("nav-item-active");
-
-        if (telaAtiva == Tela.NOVA_OCORRENCIA) {
-            itemNovaOcorrencia.getStyleClass().add("nav-item-active");
-        } else if (telaAtiva == Tela.CONSULTAR) {
-            itemConsultar.getStyleClass().add("nav-item-active");
-        } else if (telaAtiva == Tela.COMUNICACAO) {
-            itemComunicacao.getStyleClass().add("nav-item-active");
-        }
     }
 }
