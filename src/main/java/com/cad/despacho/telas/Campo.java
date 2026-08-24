@@ -6,10 +6,9 @@ import javafx.scene.layout.VBox;
 
 public class Campo {
 
-    public static VBox criar(String rotulo, Node controle, String classeRotulo) {
+    public static VBox criar(String rotulo, Node controle) {
 
         Label label = new Label(rotulo);
-        label.getStyleClass().add(classeRotulo);
 
         VBox box = new VBox(8);
         box.getChildren().add(label);
