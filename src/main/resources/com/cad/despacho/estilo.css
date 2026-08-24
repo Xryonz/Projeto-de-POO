@@ -269,3 +269,63 @@
 .suggestion-unavailable {
     -fx-opacity: 0.4;
 }
+
+.tabela {
+    -fx-background-color: -superficie;
+    -fx-border-color: -borda;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+}
+
+.tabela-cabecalho {
+    -fx-background-color: -superficie-alt;
+    -fx-padding: 14 16;
+    -fx-background-radius: 3 3 0 0;
+}
+
+.tabela-linha {
+    -fx-padding: 14 16;
+    -fx-border-color: transparent transparent -borda transparent;
+}
+
+.col-cabecalho {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -texto-fraco;
+}
+
+.col-celula {
+    -fx-font-size: 13px;
+    -fx-text-fill: -texto;
+}
+
+.badge {
+    -fx-background-radius: 3;
+    -fx-padding: 4 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.badge-alta, .badge-atendimento {
+    -fx-background-color: -vermelho;
+    -fx-text-fill: white;
+}
+
+.badge-media {
+    -fx-background-color: transparent;
+    -fx-border-color: -texto;
+    -fx-border-radius: 3;
+    -fx-text-fill: -texto;
+}
+
+.badge-baixa {
+    -fx-background-color: transparent;
+    -fx-border-color: -texto-fraco;
+    -fx-border-radius: 3;
+    -fx-text-fill: -texto-fraco;
+}
+
+.badge-concluida {
+    -fx-background-color: -superficie-alt;
+    -fx-text-fill: -texto-fraco;
+}
