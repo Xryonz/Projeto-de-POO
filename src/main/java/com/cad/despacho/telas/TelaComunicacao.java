@@ -1,10 +1,13 @@
 package com.cad.despacho.telas;
 
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TreeCell;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class TelaComunicacao {
@@ -39,23 +42,31 @@ public class TelaComunicacao {
         Label titulo = new Label("VIATURAS ATIVAS");
         titulo.getStyleClass().add("card-title");
 
-        VBox lista = new VBox(8);
-        lista.getChildren().add(criarItemLista("ABTR-05"));
-        lista.getChildren().add(criarItemLista("ASU-12"));
-        lista.getChildren().add(criarItemLista("UR-03"));
+        ListView<String> lista = new ListView<>();
+        lista.getItems().addAll("ABTR-05", "ASU-12", "UR-03");
+        lista.setCellFactory(lv -> criarCelulaCodigo());
+        lista.setFixedCellSize(38);
+        lista.prefHeightProperty().bind(lista.fixedCellSizeProperty().multiply(lista.getItems().size()).add(2));
 
         painel.getChildren().add(titulo);
         painel.getChildren().add(lista);
         return painel;
     }
 
-    VBox criarItemLista(String codigo) {
-        VBox item = new VBox();
-        item.getStyleClass().add("conv-list-cell");
-        Label label = new Label(codigo);
-        label.getStyleClass().add("item-codigo");
-        item.getChildren().add(label);
-        return item;
+    ListCell<String> criarCelulaCodigo() {
+        return new ListCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                getStyleClass().remove("item-codigo");
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item);
+                    getStyleClass().add("item-codigo");
+                }
+            }
+        };
     }
 
     VBox montarRecursos() {
@@ -67,48 +78,48 @@ public class TelaComunicacao {
         titulo.getStyleClass().add("card-title");
         titulo.getStyleClass().add("mono");
 
-        Label labelCanais = new Label("CANAIS DE RADIO ATIVOS");
-        labelCanais.getStyleClass().add("section-label");
-        VBox canais = new VBox(10);
-        canais.getChildren().add(criarLinhaRecurso("R", "A-2"));
-        canais.getChildren().add(criarLinhaRecurso("R", "B-1"));
-        canais.getChildren().add(criarLinhaRecurso("R", "C-4"));
-        canais.getChildren().add(criarLinhaRecurso("R", "F-12"));
+        TreeItem<String> raizArvore = new TreeItem<>("");
+        raizArvore.getChildren().add(criarCategoria("CANAIS DE RADIO ATIVOS", "A-2", "B-1", "C-4", "F-12"));
+        raizArvore.getChildren().add(criarCategoria("UNIDADES ALOCADAS", "ASU-01", "ABTR-02", "ASU-03", "M-04"));
 
-        Label labelUnidades = new Label("UNIDADES ALOCADAS");
-        labelUnidades.getStyleClass().add("section-label");
-        VBox unidades = new VBox(10);
-        unidades.getChildren().add(criarLinhaRecurso("V", "ASU-01"));
-        unidades.getChildren().add(criarLinhaRecurso("V", "ABTR-02"));
-        unidades.getChildren().add(criarLinhaRecurso("V", "ASU-03"));
-        unidades.getChildren().add(criarLinhaRecurso("V", "M-04"));
+        TreeView<String> arvore = new TreeView<>(raizArvore);
+        arvore.setShowRoot(false);
+        arvore.setCellFactory(tv -> criarCelulaArvore());
+        arvore.setFixedCellSize(32);
+        arvore.prefHeightProperty().bind(arvore.fixedCellSizeProperty().multiply(arvore.expandedItemCountProperty()).add(2));
 
         painel.getChildren().add(titulo);
-        painel.getChildren().add(labelCanais);
-        painel.getChildren().add(canais);
-        painel.getChildren().add(labelUnidades);
-        painel.getChildren().add(unidades);
+        painel.getChildren().add(arvore);
 
         return painel;
     }
 
-    HBox criarLinhaRecurso(String icone, String codigo) {
+    TreeItem<String> criarCategoria(String nome, String... itens) {
+        TreeItem<String> categoria = new TreeItem<>(nome);
+        categoria.setExpanded(true);
+        for (String item : itens) {
+            categoria.getChildren().add(new TreeItem<>(item));
+        }
+        return categoria;
+    }
 
-        HBox linha = new HBox(12);
-        linha.getStyleClass().add("channel-row");
-        linha.setAlignment(Pos.CENTER_LEFT);
-
-        Label labelIcone = new Label(icone);
-        labelIcone.getStyleClass().add("icon-box-texto");
-        StackPane iconBox = new StackPane(labelIcone);
-        iconBox.getStyleClass().add("icon-box");
-
-        Label label = new Label(codigo);
-        label.getStyleClass().add("item-codigo");
-
-        linha.getChildren().add(iconBox);
-        linha.getChildren().add(label);
-
-        return linha;
+    TreeCell<String> criarCelulaArvore() {
+        return new TreeCell<>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                getStyleClass().removeAll("arvore-categoria", "arvore-item");
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item);
+                    if (getTreeItem() != null && !getTreeItem().isLeaf()) {
+                        getStyleClass().add("arvore-categoria");
+                    } else {
+                        getStyleClass().add("arvore-item");
+                    }
+                }
+            }
+        };
     }
 }
