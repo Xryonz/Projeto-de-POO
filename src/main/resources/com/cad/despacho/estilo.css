@@ -203,3 +203,69 @@
     -fx-font-size: 10px;
     -fx-text-fill: -vermelho;
 }
+
+.titulo-tela {
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -texto;
+}
+
+.linha-titulo {
+    -fx-background-color: -vermelho;
+    -fx-min-height: 3;
+    -fx-max-height: 3;
+    -fx-min-width: 56;
+    -fx-max-width: 56;
+}
+
+.card {
+    -fx-background-color: -superficie;
+    -fx-border-color: -borda;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-padding: 24;
+}
+
+.card-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -texto;
+}
+
+.priority-btn {
+    -fx-background-color: -superficie-alt;
+    -fx-border-color: -borda;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-text-fill: -texto-fraco;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-padding: 12;
+    -fx-cursor: hand;
+    -fx-max-width: Infinity;
+}
+
+.priority-btn:selected {
+    -fx-background-color: -vermelho;
+    -fx-border-color: -vermelho;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.suggestion-card {
+    -fx-background-color: -superficie-alt;
+    -fx-border-color: -borda;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-padding: 12;
+}
+
+.suggestion-code {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -texto;
+}
+
+.suggestion-unavailable {
+    -fx-opacity: 0.4;
+}
