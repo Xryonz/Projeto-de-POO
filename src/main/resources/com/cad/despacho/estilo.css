@@ -99,8 +99,8 @@
 }
 
 .role-toggle:selected {
-    -fx-background-color: -vermelho;
-    -fx-text-fill: white;
+    -fx-border-color: -vermelho;
+    -fx-text-fill: -texto;
 }
 
 .btn-primary {
@@ -140,7 +140,7 @@
 .sidebar-subtitle {
     -fx-font-size: 11px;
     -fx-font-weight: 700;
-    -fx-text-fill: -vermelho;
+    -fx-text-fill: -texto-fraco;
 }
 
 .nav-item {
@@ -176,7 +176,7 @@
 
 .op-avatar {
     -fx-background-color: -bg;
-    -fx-border-color: -vermelho;
+    -fx-border-color: -borda;
     -fx-background-radius: 3;
     -fx-border-radius: 3;
     -fx-min-width: 32;
@@ -187,7 +187,7 @@
 }
 
 .op-avatar-texto {
-    -fx-text-fill: -vermelho;
+    -fx-text-fill: -texto;
     -fx-font-family: "JetBrains Mono", "Consolas", monospace;
     -fx-font-weight: 800;
     -fx-font-size: 11px;
@@ -201,7 +201,7 @@
 
 .op-tag {
     -fx-font-size: 10px;
-    -fx-text-fill: -vermelho;
+    -fx-text-fill: -texto-fraco;
 }
 
 .titulo-tela {
@@ -246,9 +246,8 @@
 }
 
 .priority-btn:selected {
-    -fx-background-color: -vermelho;
     -fx-border-color: -vermelho;
-    -fx-text-fill: white;
+    -fx-text-fill: -texto;
     -fx-font-weight: bold;
 }
 
