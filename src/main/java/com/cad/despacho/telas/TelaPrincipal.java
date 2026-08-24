@@ -13,7 +13,6 @@ public class TelaPrincipal {
     public BorderPane criar() {
 
         BorderPane raiz = new BorderPane();
-        raiz.getStyleClass().add("app-bg");
         raiz.setPadding(new Insets(32));
 
         VBox menuPronto = menu.criar(this);
@@ -38,7 +37,5 @@ public class TelaPrincipal {
         } else if (tela == Tela.COMUNICACAO) {
             areaConteudo.getChildren().add(new TelaComunicacao().criar());
         }
-
-        menu.marcarAtiva(tela);
     }
 }
