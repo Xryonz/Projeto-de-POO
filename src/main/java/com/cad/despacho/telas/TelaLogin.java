@@ -33,7 +33,7 @@ public class TelaLogin {
         topo.setAlignment(Pos.CENTER);
         StackPane badge = new StackPane();
         badge.getStyleClass().add("brand-badge");
-        Label glifo = new Label("!");
+        Label glifo = new Label("CAD");
         glifo.getStyleClass().add("brand-badge-glyph");
         badge.getChildren().add(glifo);
         Label titulo = new Label("SISTEMA CAD");
@@ -45,7 +45,7 @@ public class TelaLogin {
         topo.getChildren().add(subtitulo);
 
         Region linha = new Region();
-        linha.setStyle("-fx-border-color: #e5e7eb; -fx-border-width: 1 0 0 0;");
+        linha.getStyleClass().add("divisor");
         linha.setPrefWidth(340);
 
         Label lblUsuario = new Label("REGISTRO GERAL / CPF");
