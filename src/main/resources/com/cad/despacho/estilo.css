@@ -321,3 +321,40 @@
     -fx-font-size: 13px;
     -fx-text-fill: -texto;
 }
+
+.list-view, .tree-view {
+    -fx-background-color: -superficie;
+    -fx-border-color: -borda;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-padding: 2;
+}
+
+.list-cell, .tree-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -texto;
+    -fx-padding: 9 10;
+    -fx-border-color: transparent transparent -borda transparent;
+}
+
+.list-cell:filled:hover, .list-cell:filled:selected,
+.tree-cell:filled:hover, .tree-cell:filled:selected {
+    -fx-background-color: -superficie-alt;
+}
+
+.tree-cell > .tree-disclosure-node > .arrow {
+    -fx-background-color: -texto-fraco;
+}
+
+.arvore-categoria {
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -texto-fraco;
+}
+
+.arvore-item {
+    -fx-font-family: "JetBrains Mono", "Consolas", monospace;
+    -fx-font-weight: 800;
+    -fx-font-size: 13px;
+    -fx-text-fill: -texto;
+}
