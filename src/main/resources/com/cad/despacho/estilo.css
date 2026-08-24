@@ -251,20 +251,6 @@
     -fx-font-weight: bold;
 }
 
-.suggestion-card {
-    -fx-background-color: -superficie-alt;
-    -fx-border-color: -borda;
-    -fx-background-radius: 3;
-    -fx-border-radius: 3;
-    -fx-padding: 12;
-}
-
-.suggestion-code {
-    -fx-font-size: 13px;
-    -fx-font-weight: bold;
-    -fx-text-fill: -texto;
-}
-
 .suggestion-unavailable {
     -fx-opacity: 0.4;
 }
@@ -329,50 +315,9 @@
     -fx-text-fill: -texto-fraco;
 }
 
-.conv-list-cell {
-    -fx-background-color: -superficie-alt;
-    -fx-border-color: -borda;
-    -fx-background-radius: 3;
-    -fx-border-radius: 3;
-    -fx-padding: 10;
-}
-
-.channel-row {
-    -fx-background-color: -superficie-alt;
-    -fx-border-color: -borda;
-    -fx-background-radius: 3;
-    -fx-border-radius: 3;
-    -fx-padding: 12;
-}
-
-.icon-box {
-    -fx-background-color: -bg;
-    -fx-border-color: -borda;
-    -fx-background-radius: 3;
-    -fx-border-radius: 3;
-    -fx-min-width: 28;
-    -fx-min-height: 28;
-    -fx-max-width: 28;
-    -fx-max-height: 28;
-    -fx-alignment: center;
-}
-
-.icon-box-texto {
-    -fx-text-fill: -texto-fraco;
-    -fx-font-family: "JetBrains Mono", "Consolas", monospace;
-    -fx-font-weight: 800;
-    -fx-font-size: 12px;
-}
-
 .item-codigo {
     -fx-font-family: "JetBrains Mono", "Consolas", monospace;
     -fx-font-weight: 800;
     -fx-font-size: 13px;
     -fx-text-fill: -texto;
-}
-
-.section-label {
-    -fx-font-size: 12px;
-    -fx-font-weight: 800;
-    -fx-text-fill: -texto-fraco;
 }
