@@ -1,11 +1,13 @@
 package com.cad.despacho.telas;
 
+import java.util.Set;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -46,36 +48,21 @@ public class TelaNovaOcorrencia {
         tituloCard.getStyleClass().add("card-title");
 
         ComboBox<String> comboTipo = new ComboBox<>();
-        comboTipo.getItems().add("Incendio Comercial");
-        comboTipo.getItems().add("Incendio Residencial");
-        comboTipo.getItems().add("Incendio Florestal");
-        comboTipo.getItems().add("Colisao de Veiculos");
-        comboTipo.getItems().add("Atendimento Clinico");
+        comboTipo.getItems().addAll("Incendio Comercial", "Incendio Residencial", "Incendio Florestal",
+                "Colisao de Veiculos", "Atendimento Clinico");
         comboTipo.setValue("Incendio Comercial");
         comboTipo.setMaxWidth(Double.MAX_VALUE);
         comboTipo.getStyleClass().add("input-field");
-        VBox campoTipoBox = criarCampo("TIPO DE OCORRENCIA", comboTipo);
+        VBox campoTipoBox = Campo.criar("TIPO DE OCORRENCIA", comboTipo, "field-label-muted");
         HBox.setHgrow(campoTipoBox, Priority.ALWAYS);
 
         ToggleGroup grupoPrioridade = new ToggleGroup();
-        ToggleButton btnAlta = new ToggleButton("ALTA");
-        ToggleButton btnMedia = new ToggleButton("MEDIA");
-        ToggleButton btnBaixa = new ToggleButton("BAIXA");
-        btnAlta.getStyleClass().add("priority-btn");
-        btnMedia.getStyleClass().add("priority-btn");
-        btnBaixa.getStyleClass().add("priority-btn");
-        btnAlta.setToggleGroup(grupoPrioridade);
-        btnMedia.setToggleGroup(grupoPrioridade);
-        btnBaixa.setToggleGroup(grupoPrioridade);
-        btnAlta.setMaxWidth(Double.MAX_VALUE);
-        btnMedia.setMaxWidth(Double.MAX_VALUE);
-        btnBaixa.setMaxWidth(Double.MAX_VALUE);
-        HBox.setHgrow(btnAlta, Priority.ALWAYS);
-        HBox.setHgrow(btnMedia, Priority.ALWAYS);
-        HBox.setHgrow(btnBaixa, Priority.ALWAYS);
+        ToggleButton btnAlta = Botoes.criarToggle("ALTA", grupoPrioridade, "priority-btn");
+        ToggleButton btnMedia = Botoes.criarToggle("MEDIA", grupoPrioridade, "priority-btn");
+        ToggleButton btnBaixa = Botoes.criarToggle("BAIXA", grupoPrioridade, "priority-btn");
         btnAlta.setSelected(true);
         HBox boxPrioridade = new HBox(8, btnAlta, btnMedia, btnBaixa);
-        VBox campoPrioridadeBox = criarCampo("PRIORIDADE TATICA", boxPrioridade);
+        VBox campoPrioridadeBox = Campo.criar("PRIORIDADE TATICA", boxPrioridade, "field-label-muted");
         HBox.setHgrow(campoPrioridadeBox, Priority.ALWAYS);
 
         HBox linha1 = new HBox(16, campoTipoBox, campoPrioridadeBox);
@@ -83,20 +70,20 @@ public class TelaNovaOcorrencia {
         TextField campoLocal = new TextField();
         campoLocal.getStyleClass().add("input-field");
         campoLocal.setPromptText("Rua, numero - Bairro, Cidade/UF");
-        VBox campoLocalBox = criarCampo("LOCALIZACAO", campoLocal);
+        VBox campoLocalBox = Campo.criar("LOCALIZACAO", campoLocal, "field-label-muted");
 
         TextField campoDataHora = new TextField();
         campoDataHora.getStyleClass().add("input-field");
         campoDataHora.getStyleClass().add("mono");
         campoDataHora.setText("09/05/2026 - 14:15");
         campoDataHora.setEditable(false);
-        VBox campoDataBox = criarCampo("DATA E HORA DO REGISTRO", campoDataHora);
+        VBox campoDataBox = Campo.criar("DATA E HORA DO REGISTRO", campoDataHora, "field-label-muted");
         campoDataBox.setPrefWidth(220);
 
         TextField campoSolicitante = new TextField();
         campoSolicitante.getStyleClass().add("input-field");
         campoSolicitante.setPromptText("Nome (obs) e telefone");
-        VBox campoSolicitanteBox = criarCampo("SOLICITANTE / CONTATO", campoSolicitante);
+        VBox campoSolicitanteBox = Campo.criar("SOLICITANTE / CONTATO", campoSolicitante, "field-label-muted");
         HBox.setHgrow(campoSolicitanteBox, Priority.ALWAYS);
 
         HBox linha3 = new HBox(16, campoDataBox, campoSolicitanteBox);
@@ -106,7 +93,7 @@ public class TelaNovaOcorrencia {
         campoDescricao.setPrefRowCount(3);
         campoDescricao.setWrapText(true);
         campoDescricao.setPromptText("Descreve ai o que foi relatado...");
-        VBox campoDescricaoBox = criarCampo("DESCRICAO INICIAL DA OCORRENCIA", campoDescricao);
+        VBox campoDescricaoBox = Campo.criar("DESCRICAO INICIAL DA OCORRENCIA", campoDescricao, "field-label-muted");
 
         card.getChildren().add(tituloCard);
         card.getChildren().add(linha1);
@@ -126,15 +113,6 @@ public class TelaNovaOcorrencia {
         return formularioCompleto;
     }
 
-    VBox criarCampo(String texto, Node campo) {
-        Label label = new Label(texto);
-        label.getStyleClass().add("field-label-muted");
-        VBox box = new VBox(8);
-        box.getChildren().add(label);
-        box.getChildren().add(campo);
-        return box;
-    }
-
     VBox montarRecursos() {
 
         VBox painel = new VBox(20);
@@ -145,45 +123,48 @@ public class TelaNovaOcorrencia {
         Label titulo = new Label("VIATURAS DISPONIVEIS");
         titulo.getStyleClass().add("card-title");
 
-        VBox lista = new VBox(12);
-        lista.getChildren().add(criarLinhaViatura("ABTR-05", true));
-        lista.getChildren().add(criarLinhaViatura("ASU-12", true));
-        lista.getChildren().add(criarLinhaViatura("AT-03", true));
-        lista.getChildren().add(criarLinhaViatura("UR-03", true));
-        lista.getChildren().add(criarLinhaViatura("ASU-01", false));
-        lista.getChildren().add(criarLinhaViatura("ABTR-02", false));
+        ListView<String> lista = new ListView<>();
+        lista.getItems().addAll("ABTR-05", "ASU-12", "AT-03", "UR-03", "ASU-01", "ABTR-02");
+
+        Set<String> indisponiveis = Set.of("ASU-01", "ABTR-02");
+
+        lista.setCellFactory(lv -> criarCelulaViatura(indisponiveis));
+        lista.setFixedCellSize(40);
+        lista.prefHeightProperty().bind(lista.fixedCellSizeProperty().multiply(lista.getItems().size()).add(2));
 
         painel.getChildren().add(titulo);
         painel.getChildren().add(lista);
         return painel;
     }
 
-    HBox criarLinhaViatura(String codigo, boolean disponivel) {
+    ListCell<String> criarCelulaViatura(Set<String> indisponiveis) {
+        return new ListCell<>() {
 
-        HBox linha = new HBox(12);
-        linha.getStyleClass().add("suggestion-card");
-        linha.setAlignment(Pos.CENTER_LEFT);
+            final CheckBox check = new CheckBox();
+            final Label label = new Label();
+            final HBox linha = new HBox(12, check, label);
 
-        CheckBox check = new CheckBox();
-        if (disponivel == false) {
-            check.setDisable(true);
-        }
+            {
+                linha.setAlignment(Pos.CENTER_LEFT);
+                label.getStyleClass().add("item-codigo");
+            }
 
-        String texto = codigo;
-        if (disponivel == false) {
-            texto = texto + "  (indisponivel)";
-        }
-        Label label = new Label(texto);
-        label.getStyleClass().add("suggestion-code");
-        label.getStyleClass().add("mono");
-
-        linha.getChildren().add(check);
-        linha.getChildren().add(label);
-
-        if (disponivel == false) {
-            linha.getStyleClass().add("suggestion-unavailable");
-        }
-
-        return linha;
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                getStyleClass().remove("suggestion-unavailable");
+                if (empty || item == null) {
+                    setGraphic(null);
+                } else {
+                    boolean disponivel = !indisponiveis.contains(item);
+                    check.setDisable(!disponivel);
+                    label.setText(disponivel ? item : item + "  (indisponivel)");
+                    if (!disponivel) {
+                        getStyleClass().add("suggestion-unavailable");
+                    }
+                    setGraphic(linha);
+                }
+            }
+        };
     }
 }
