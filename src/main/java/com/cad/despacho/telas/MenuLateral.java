@@ -6,8 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 
 public class MenuLateral {
 
@@ -63,8 +63,11 @@ public class MenuLateral {
         boxOperador.getStyleClass().add("op-session");
         HBox linhaOperador = new HBox(10);
         linhaOperador.setAlignment(Pos.CENTER_LEFT);
-        Circle avatar = new Circle(16);
+        StackPane avatar = new StackPane();
         avatar.getStyleClass().add("op-avatar");
+        Label avatarIniciais = new Label("RS");
+        avatarIniciais.getStyleClass().add("op-avatar-texto");
+        avatar.getChildren().add(avatarIniciais);
         VBox textoOperador = new VBox(0);
         Label nome = new Label("Sgt. Renato Silva");
         nome.getStyleClass().add("op-name");
