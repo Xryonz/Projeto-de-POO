@@ -27,73 +27,69 @@ public class TelaNovaOcorrencia {
 
         Label tituloCard = new Label("DADOS DO EVENTO / SINISTRO");
 
-        Label lblTipo = new Label("TIPO DE OCORRENCIA");
+        Label labelTipo = new Label("TIPO DE OCORRENCIA");
         ComboBox<String> comboTipo = new ComboBox<>();
         comboTipo.getItems().addAll("Incendio Comercial", "Incendio Residencial", "Incendio Florestal",
                 "Colisao de Veiculos", "Atendimento Clinico");
         comboTipo.setValue("Incendio Comercial");
-        comboTipo.setMaxWidth(Double.MAX_VALUE);
         VBox campoTipoBox = new VBox(8);
-        campoTipoBox.getChildren().add(lblTipo);
+        campoTipoBox.getChildren().add(labelTipo);
         campoTipoBox.getChildren().add(comboTipo);
         HBox.setHgrow(campoTipoBox, Priority.ALWAYS);
 
-        Label lblPrioridade = new Label("PRIORIDADE TATICA");
+        Label labelPrioridade = new Label("PRIORIDADE TATICA");
         ToggleGroup grupoPrioridade = new ToggleGroup();
-        ToggleButton btnAlta = new ToggleButton("ALTA");
-        btnAlta.setToggleGroup(grupoPrioridade);
-        btnAlta.setMaxWidth(Double.MAX_VALUE);
-        HBox.setHgrow(btnAlta, Priority.ALWAYS);
-        btnAlta.setSelected(true);
-        ToggleButton btnMedia = new ToggleButton("MEDIA");
-        btnMedia.setToggleGroup(grupoPrioridade);
-        btnMedia.setMaxWidth(Double.MAX_VALUE);
-        HBox.setHgrow(btnMedia, Priority.ALWAYS);
-        ToggleButton btnBaixa = new ToggleButton("BAIXA");
-        btnBaixa.setToggleGroup(grupoPrioridade);
-        btnBaixa.setMaxWidth(Double.MAX_VALUE);
-        HBox.setHgrow(btnBaixa, Priority.ALWAYS);
-        HBox boxPrioridade = new HBox(8, btnAlta, btnMedia, btnBaixa);
+        ToggleButton botaoAlta = new ToggleButton("ALTA");
+        botaoAlta.setToggleGroup(grupoPrioridade);
+        HBox.setHgrow(botaoAlta, Priority.ALWAYS);
+        botaoAlta.setSelected(true);
+        ToggleButton botaoMedia = new ToggleButton("MEDIA");
+        botaoMedia.setToggleGroup(grupoPrioridade);
+        HBox.setHgrow(botaoMedia, Priority.ALWAYS);
+        ToggleButton botaoBaixa = new ToggleButton("BAIXA");
+        botaoBaixa.setToggleGroup(grupoPrioridade);
+        HBox.setHgrow(botaoBaixa, Priority.ALWAYS);
+        HBox boxPrioridade = new HBox(8, botaoAlta, botaoMedia, botaoBaixa);
         VBox campoPrioridadeBox = new VBox(8);
-        campoPrioridadeBox.getChildren().add(lblPrioridade);
+        campoPrioridadeBox.getChildren().add(labelPrioridade);
         campoPrioridadeBox.getChildren().add(boxPrioridade);
         HBox.setHgrow(campoPrioridadeBox, Priority.ALWAYS);
 
         HBox linha1 = new HBox(16, campoTipoBox, campoPrioridadeBox);
 
-        Label lblLocal = new Label("LOCALIZACAO");
+        Label labelLocal = new Label("LOCALIZACAO");
         TextField campoLocal = new TextField();
         campoLocal.setPromptText("Rua, numero - Bairro, Cidade/UF");
         VBox campoLocalBox = new VBox(8);
-        campoLocalBox.getChildren().add(lblLocal);
+        campoLocalBox.getChildren().add(labelLocal);
         campoLocalBox.getChildren().add(campoLocal);
 
-        Label lblData = new Label("DATA E HORA DO REGISTRO");
+        Label labelData = new Label("DATA E HORA DO REGISTRO");
         TextField campoDataHora = new TextField();
         campoDataHora.setText("09/05/2026 - 14:15");
         campoDataHora.setEditable(false);
         VBox campoDataBox = new VBox(8);
-        campoDataBox.getChildren().add(lblData);
+        campoDataBox.getChildren().add(labelData);
         campoDataBox.getChildren().add(campoDataHora);
         campoDataBox.setPrefWidth(220);
 
-        Label lblSolicitante = new Label("SOLICITANTE / CONTATO");
+        Label labelSolicitante = new Label("SOLICITANTE / CONTATO");
         TextField campoSolicitante = new TextField();
         campoSolicitante.setPromptText("Nome (obs) e telefone");
         VBox campoSolicitanteBox = new VBox(8);
-        campoSolicitanteBox.getChildren().add(lblSolicitante);
+        campoSolicitanteBox.getChildren().add(labelSolicitante);
         campoSolicitanteBox.getChildren().add(campoSolicitante);
         HBox.setHgrow(campoSolicitanteBox, Priority.ALWAYS);
 
         HBox linha3 = new HBox(16, campoDataBox, campoSolicitanteBox);
 
-        Label lblDescricao = new Label("DESCRICAO INICIAL DA OCORRENCIA");
+        Label labelDescricao = new Label("DESCRICAO INICIAL DA OCORRENCIA");
         TextArea campoDescricao = new TextArea();
         campoDescricao.setPrefRowCount(3);
         campoDescricao.setWrapText(true);
         campoDescricao.setPromptText("Descreve ai o que foi relatado...");
         VBox campoDescricaoBox = new VBox(8);
-        campoDescricaoBox.getChildren().add(lblDescricao);
+        campoDescricaoBox.getChildren().add(labelDescricao);
         campoDescricaoBox.getChildren().add(campoDescricao);
 
         card.getChildren().add(tituloCard);
@@ -104,8 +100,8 @@ public class TelaNovaOcorrencia {
 
         HBox linhaBotao = new HBox();
         linhaBotao.setAlignment(Pos.CENTER_RIGHT);
-        Button btnRegistrar = new Button("Registrar e Despachar");
-        linhaBotao.getChildren().add(btnRegistrar);
+        Button botaoRegistrar = new Button("Registrar e Despachar");
+        linhaBotao.getChildren().add(botaoRegistrar);
 
         VBox formulario = new VBox(24);
         formulario.getChildren().add(card);
@@ -114,7 +110,6 @@ public class TelaNovaOcorrencia {
 
         VBox painel = new VBox(20);
         painel.setPrefWidth(380);
-        painel.setMinWidth(380);
 
         Label tituloViaturas = new Label("VIATURAS DISPONIVEIS");
 
