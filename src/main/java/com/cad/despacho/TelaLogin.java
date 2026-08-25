@@ -1,5 +1,7 @@
-package com.cad.despacho.telas;
+package com.cad.despacho;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -37,20 +40,35 @@ public class TelaLogin {
         topo.getChildren().add(titulo);
         topo.getChildren().add(subtitulo);
 
+        Label lblUsuario = new Label("REGISTRO GERAL / CPF");
         TextField campoRgCpf = new TextField();
         campoRgCpf.setPromptText("123.456.789-10");
-        VBox boxUsuario = Campo.criar("REGISTRO GERAL / CPF", campoRgCpf);
+        VBox boxUsuario = new VBox(8);
+        boxUsuario.getChildren().add(lblUsuario);
+        boxUsuario.getChildren().add(campoRgCpf);
 
+        Label lblSenha = new Label("SENHA DE ACESSO TATICO");
         PasswordField campoSenha = new PasswordField();
         campoSenha.setPromptText("****************");
-        VBox boxSenha = Campo.criar("SENHA DE ACESSO TATICO", campoSenha);
+        VBox boxSenha = new VBox(8);
+        boxSenha.getChildren().add(lblSenha);
+        boxSenha.getChildren().add(campoSenha);
 
+        Label lblPerfil = new Label("PERFIL DE OPERACAO");
         ToggleGroup grupoPerfil = new ToggleGroup();
-        ToggleButton btnDespachante = Botoes.criarToggle("Despachante", grupoPerfil);
-        ToggleButton btnSupervisor = Botoes.criarToggle("Supervisor", grupoPerfil);
+        ToggleButton btnDespachante = new ToggleButton("Despachante");
+        btnDespachante.setToggleGroup(grupoPerfil);
+        btnDespachante.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(btnDespachante, Priority.ALWAYS);
         btnDespachante.setSelected(true);
+        ToggleButton btnSupervisor = new ToggleButton("Supervisor");
+        btnSupervisor.setToggleGroup(grupoPerfil);
+        btnSupervisor.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(btnSupervisor, Priority.ALWAYS);
         HBox boxRoles = new HBox(btnDespachante, btnSupervisor);
-        VBox boxPerfil = Campo.criar("PERFIL DE OPERACAO", boxRoles);
+        VBox boxPerfil = new VBox(8);
+        boxPerfil.getChildren().add(lblPerfil);
+        boxPerfil.getChildren().add(boxRoles);
 
         VBox formulario = new VBox(20);
         formulario.getChildren().add(boxUsuario);
@@ -60,10 +78,12 @@ public class TelaLogin {
         Button btnEntrar = new Button("AUTENTICAR NO CONSOLE");
         btnEntrar.setMaxWidth(Double.MAX_VALUE);
         btnEntrar.setDefaultButton(true);
-        btnEntrar.setOnAction(e -> {
-            TelaPrincipal telaPrincipal = new TelaPrincipal();
-            Scene cena = new Scene(telaPrincipal.criar(), 1200, 750);
-            janela.setScene(cena);
+        btnEntrar.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent evento) {
+                TelaPrincipal telaPrincipal = new TelaPrincipal();
+                Scene cena = new Scene(telaPrincipal.criar(), 1200, 750);
+                janela.setScene(cena);
+            }
         });
 
         card.getChildren().add(topo);
