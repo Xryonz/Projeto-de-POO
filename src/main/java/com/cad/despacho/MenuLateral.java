@@ -5,8 +5,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class MenuLateral {
@@ -15,7 +13,6 @@ public class MenuLateral {
 
         VBox raiz = new VBox(24);
         raiz.setPadding(new Insets(20, 16, 20, 16));
-        raiz.setPrefWidth(250);
 
         VBox marca = new VBox(2);
         Label titulo = new Label("SISTEMA CAD");
@@ -28,21 +25,21 @@ public class MenuLateral {
         Button itemNovaOcorrencia = new Button("+  Nova Ocorrencia");
         itemNovaOcorrencia.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent evento) {
-                pai.navegar(Tela.NOVA_OCORRENCIA);
+                pai.navegar("nova");
             }
         });
 
         Button itemConsultar = new Button("=  Consultar Ocorrencias");
         itemConsultar.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent evento) {
-                pai.navegar(Tela.CONSULTAR);
+                pai.navegar("consultar");
             }
         });
 
         Button itemComunicacao = new Button("))  Comunicacao");
         itemComunicacao.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent evento) {
-                pai.navegar(Tela.COMUNICACAO);
+                pai.navegar("comunicacao");
             }
         });
 
@@ -50,12 +47,8 @@ public class MenuLateral {
         listaNav.getChildren().add(itemConsultar);
         listaNav.getChildren().add(itemComunicacao);
 
-        Region espaco = new Region();
-        VBox.setVgrow(espaco, Priority.ALWAYS);
-
         raiz.getChildren().add(marca);
         raiz.getChildren().add(listaNav);
-        raiz.getChildren().add(espaco);
 
         return raiz;
     }
