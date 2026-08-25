@@ -1,68 +1,52 @@
 package com.cad.despacho;
 
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class TelaComunicacao {
 
     public VBox criar() {
 
-        VBox raiz = new VBox(24);
+        VBox raiz = new VBox();
         raiz.getChildren().add(new Label("CENTRAL DE RADIO E TEXTO COBOM"));
 
-        VBox painelViaturas = new VBox(16);
-        painelViaturas.setPrefWidth(280);
-        painelViaturas.setMinWidth(280);
+        VBox painelViaturas = new VBox();
 
         Label tituloViaturas = new Label("VIATURAS ATIVAS");
-        ListView<String> listaViaturas = new ListView<>();
-        listaViaturas.getItems().addAll("ABTR-05", "ASU-12", "UR-03");
-        listaViaturas.setFixedCellSize(28);
-        listaViaturas.prefHeightProperty().bind(
-                listaViaturas.fixedCellSizeProperty().multiply(listaViaturas.getItems().size()).add(2));
+        VBox listaViaturas = new VBox();
+        listaViaturas.getChildren().add(new Label("ABTR-05"));
+        listaViaturas.getChildren().add(new Label("ASU-12"));
+        listaViaturas.getChildren().add(new Label("UR-03"));
 
         painelViaturas.getChildren().add(tituloViaturas);
         painelViaturas.getChildren().add(listaViaturas);
 
-        VBox painelRecursos = new VBox(16);
+        VBox painelRecursos = new VBox();
 
         Label tituloRecursos = new Label("DISPOSICAO DE RECURSOS");
 
-        TreeItem<String> canais = new TreeItem<>("CANAIS DE RADIO ATIVOS");
-        canais.setExpanded(true);
-        canais.getChildren().add(new TreeItem<>("A-2"));
-        canais.getChildren().add(new TreeItem<>("B-1"));
-        canais.getChildren().add(new TreeItem<>("C-4"));
-        canais.getChildren().add(new TreeItem<>("F-12"));
+        Label labelCanais = new Label("CANAIS DE RADIO ATIVOS");
+        VBox canais = new VBox();
+        canais.getChildren().add(new Label("A-2"));
+        canais.getChildren().add(new Label("B-1"));
+        canais.getChildren().add(new Label("C-4"));
+        canais.getChildren().add(new Label("F-12"));
 
-        TreeItem<String> unidades = new TreeItem<>("UNIDADES ALOCADAS");
-        unidades.setExpanded(true);
-        unidades.getChildren().add(new TreeItem<>("ASU-01"));
-        unidades.getChildren().add(new TreeItem<>("ABTR-02"));
-        unidades.getChildren().add(new TreeItem<>("ASU-03"));
-        unidades.getChildren().add(new TreeItem<>("M-04"));
-
-        TreeItem<String> raizArvore = new TreeItem<>("");
-        raizArvore.getChildren().add(canais);
-        raizArvore.getChildren().add(unidades);
-
-        TreeView<String> arvore = new TreeView<>(raizArvore);
-        arvore.setShowRoot(false);
-        arvore.setFixedCellSize(28);
-        arvore.prefHeightProperty().bind(
-                arvore.fixedCellSizeProperty().multiply(arvore.expandedItemCountProperty()).add(2));
+        Label labelUnidades = new Label("UNIDADES ALOCADAS");
+        VBox unidades = new VBox();
+        unidades.getChildren().add(new Label("ASU-01"));
+        unidades.getChildren().add(new Label("ABTR-02"));
+        unidades.getChildren().add(new Label("ASU-03"));
+        unidades.getChildren().add(new Label("M-04"));
 
         painelRecursos.getChildren().add(tituloRecursos);
-        painelRecursos.getChildren().add(arvore);
-        HBox.setHgrow(painelRecursos, Priority.ALWAYS);
+        painelRecursos.getChildren().add(labelCanais);
+        painelRecursos.getChildren().add(canais);
+        painelRecursos.getChildren().add(labelUnidades);
+        painelRecursos.getChildren().add(unidades);
 
-        HBox area = new HBox(24, painelViaturas, painelRecursos);
-        VBox.setVgrow(area, Priority.ALWAYS);
+        HBox area = new HBox(painelViaturas, painelRecursos);
 
         raiz.getChildren().add(area);
 
