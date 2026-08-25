@@ -1,5 +1,4 @@
 package com.cad.despacho;
-
 import javafx.scene.layout.BorderPane;
 
 public class TelaPrincipal {
