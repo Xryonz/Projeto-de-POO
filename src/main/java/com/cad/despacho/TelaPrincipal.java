@@ -21,20 +21,20 @@ public class TelaPrincipal {
 
         raiz.setCenter(areaConteudo);
 
-        navegar(Tela.NOVA_OCORRENCIA);
+        navegar("nova");
 
         return raiz;
     }
 
-    public void navegar(Tela tela) {
+    public void navegar(String tela) {
 
         areaConteudo.getChildren().clear();
 
-        if (tela == Tela.NOVA_OCORRENCIA) {
+        if (tela.equals("nova")) {
             areaConteudo.getChildren().add(new TelaNovaOcorrencia().criar(this));
-        } else if (tela == Tela.CONSULTAR) {
+        } else if (tela.equals("consultar")) {
             areaConteudo.getChildren().add(new TelaConsultarOcorrencias().criar());
-        } else if (tela == Tela.COMUNICACAO) {
+        } else if (tela.equals("comunicacao")) {
             areaConteudo.getChildren().add(new TelaComunicacao().criar());
         }
     }
