@@ -16,7 +16,6 @@ public class MenuLateral {
         VBox raiz = new VBox(24);
         raiz.setPadding(new Insets(20, 16, 20, 16));
         raiz.setPrefWidth(250);
-        raiz.setMinWidth(250);
 
         VBox marca = new VBox(2);
         Label titulo = new Label("SISTEMA CAD");
@@ -27,7 +26,6 @@ public class MenuLateral {
         VBox listaNav = new VBox(6);
 
         Button itemNovaOcorrencia = new Button("+  Nova Ocorrencia");
-        itemNovaOcorrencia.setMaxWidth(Double.MAX_VALUE);
         itemNovaOcorrencia.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent evento) {
                 pai.navegar(Tela.NOVA_OCORRENCIA);
@@ -35,7 +33,6 @@ public class MenuLateral {
         });
 
         Button itemConsultar = new Button("=  Consultar Ocorrencias");
-        itemConsultar.setMaxWidth(Double.MAX_VALUE);
         itemConsultar.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent evento) {
                 pai.navegar(Tela.CONSULTAR);
@@ -43,7 +40,6 @@ public class MenuLateral {
         });
 
         Button itemComunicacao = new Button("))  Comunicacao");
-        itemComunicacao.setMaxWidth(Double.MAX_VALUE);
         itemComunicacao.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent evento) {
                 pai.navegar(Tela.COMUNICACAO);
