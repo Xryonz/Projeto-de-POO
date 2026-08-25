@@ -1,4 +1,4 @@
-package com.cad.despacho.telas;
+package com.cad.despacho;
 
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
